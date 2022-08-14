@@ -5,6 +5,8 @@ import storage.AuthorStorage;
 import storage.BookStorage;
 import storage.UserStorage;
 
+import java.io.File;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 import static util.DateUtil.stringToDate;
@@ -43,7 +45,7 @@ public class BooksDemo implements Commands {
         }
     }
 
-    private static void initData() { //porceq nayem
+    private static void initData() {
         User admin = new User("admin", "admin", "admin@gmail.com", "admin", Role.ADMIN);
         userStorage.add(admin);
         Author nicholas = new Author("Nicholas", " Sparks", "nicholassparks.com", Gender.MALE, stringToDate("02.09.2022"));
@@ -85,7 +87,7 @@ public class BooksDemo implements Commands {
                 user.setSurname(userData[1]);
                 user.setEmail(userData[2]);
                 user.setPassword(userData[3]);
-                user.setRegisteredRole(Role.USER);
+                user.setRole(Role.USER);
                 userStorage.add(user);
                 System.out.println("You are registered");
             } else {
@@ -130,6 +132,9 @@ public class BooksDemo implements Commands {
                     break;
                 case PRINT_ALL_AUTHORS:
                     authorStorage.print();
+                    break;
+                case DOWNLOAD_BOOKS_EXCEL:
+                    downloadBooksExcel();
                     break;
                 case ADD_BOOK:
                     addBooks();
@@ -180,9 +185,23 @@ public class BooksDemo implements Commands {
                 case PRINT_ALL_AUTHORS:
                     authorStorage.print();
                     break;
+                case DOWNLOAD_BOOKS_EXCEL:
+                    downloadBooksExcel();
+                    break;
                 default:
                     System.out.println("Please, try again");
             }
+        }
+    }
+
+    private static void downloadBooksExcel() {
+        System.out.println("Please, input the location of the file");
+        String dirPath = scanner.nextLine();
+        try {
+            File directory = new File(dirPath);
+            bookStorage.createBooksExcel(dirPath);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
