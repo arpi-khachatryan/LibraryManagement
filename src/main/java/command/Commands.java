@@ -9,8 +9,10 @@ public interface Commands {
     int PRINT_AUTHOR_BY_GENDER = 5;
     int PRINT_AUTHOR_BY_EMAIL = 6;
     int PRINT_ALL_AUTHORS = 7;
-    int ADD_BOOK = 8;
-    int ADD_AUTHOR = 9;
+    int DOWNLOAD_BOOKS_EXCEL = 8;
+    int ADD_BOOK = 9;
+    int ADD_AUTHOR = 10;
+
     int EXIT = 0;
     int LOGIN = 1;
     int REGISTER = 2;
@@ -30,6 +32,7 @@ public interface Commands {
         System.out.println("Please, input " + PRINT_AUTHOR_BY_GENDER + " to show the author by gender");
         System.out.println("Please, input " + PRINT_AUTHOR_BY_EMAIL + " to show the author by email");
         System.out.println("Please, input " + PRINT_ALL_AUTHORS + " to show all the authors");
+        System.out.println("Please input " + DOWNLOAD_BOOKS_EXCEL + " to download books into an excel");
     }
 
     static void printAdminCommands() {
@@ -41,6 +44,7 @@ public interface Commands {
         System.out.println("Please, input " + PRINT_AUTHOR_BY_GENDER + " to show the author by gender");
         System.out.println("Please, input " + PRINT_AUTHOR_BY_EMAIL + " to show the author by email");
         System.out.println("Please, input " + PRINT_ALL_AUTHORS + " to show all the authors");
+        System.out.println("Please input " + DOWNLOAD_BOOKS_EXCEL + " to download books into an excel");
         System.out.println("Please, input " + ADD_BOOK + " to add a book");
         System.out.println("Please, input " + ADD_AUTHOR + " to add the author");
     }
