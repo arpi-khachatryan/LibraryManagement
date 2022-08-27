@@ -8,7 +8,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class BookStorage {
     private Book[] booksArray = new Book[10];
@@ -132,6 +134,34 @@ public class BookStorage {
         }
         workbook.write(new FileOutputStream(excelFile));
         System.out.println("Excel file was successfully created");
+    }
+
+    public void readfromExcel(String fileLocation) throws IOException {
+        FileInputStream file = new FileInputStream(new File(fileLocation));
+        Workbook workbook = new XSSFWorkbook(file);
+        Sheet sheet = workbook.getSheetAt(0);
+        int rowNum = sheet.getLastRowNum();
+        int cellNum = sheet.getRow(1).getLastCellNum();
+        for (int i = 0; i <= rowNum; i++) {
+            Row row = sheet.getRow(i);
+            for (int j = 0; j < cellNum; j++) {
+                Cell cell = row.getCell(j);
+                switch (cell.getCellType()) {
+                    case _NONE:
+                        break;
+                    case STRING:
+                        System.out.println(cell.getStringCellValue());
+                        break;
+                    case NUMERIC:
+                        System.out.println(cell.getNumericCellValue());
+                        break;
+                    case BOOLEAN:
+                        System.out.println(cell.getBooleanCellValue());
+                        break;
+                }
+            }
+            System.out.println();
+        }
     }
 }
 
