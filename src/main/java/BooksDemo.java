@@ -136,6 +136,9 @@ public class BooksDemo implements Commands {
                 case DOWNLOAD_BOOKS_EXCEL:
                     downloadBooksExcel();
                     break;
+                case READING_FROM_EXCEL:
+                    readingFromExcel();
+                    break;
                 case ADD_BOOK:
                     addBooks();
                     break;
@@ -188,9 +191,22 @@ public class BooksDemo implements Commands {
                 case DOWNLOAD_BOOKS_EXCEL:
                     downloadBooksExcel();
                     break;
+                case READING_FROM_EXCEL:
+                    readingFromExcel();
+                    break;
                 default:
                     System.out.println("Please, try again");
             }
+        }
+    }
+
+    private static void readingFromExcel() {
+        try {
+            System.out.println("Please input the filepath");
+            String fileLocation = scanner.nextLine();
+            bookStorage.readfromExcel(fileLocation);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
